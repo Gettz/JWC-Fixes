@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name JWChatMakeFit
+// @name JWChat Fixes
 // @namespace https://github.com/Gettz/
-// @version 0.3
+// @version 1.0
 // @description JW fix iframe size
 // @author Tom L
 // @match https://tracker.telenetwork.com/tnichat/*
