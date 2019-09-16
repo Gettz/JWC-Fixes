@@ -1,11 +1,13 @@
 // ==UserScript==
 // @name JWChatMakeFit
 // @namespace http://localhost
-// @version 0.1
+// @version 0.2
 // @description JW fix iframe size
 // @author Tom L
 // @match https://tracker.telenetwork.com/tnichat/*
 // @grant window.focus
+// @updateURL https://raw.githubusercontent.com/Gettz/JWC-Fixes/master/fit.user.js
+// @downloadURL https://raw.githubusercontent.com/Gettz/JWC-Fixes/master/fit.user.js
 // ==/UserScript==
 
 (function() {
