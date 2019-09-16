@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name JWChatMakeFit
-// @namespace http://localhost
+// @namespace https://github.com/Gettz/
 // @version 0.2
 // @description JW fix iframe size
 // @author Tom L
