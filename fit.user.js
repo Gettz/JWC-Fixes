@@ -27,10 +27,10 @@
     observer.observe(document, {
         subtree: true,
         attributes: true,
-        childList: true,
-        characterData: true,
-        attributeOldValue: true,
-        characterDataOldValue: true
+        //childList: true,
+        //characterData: true,
+        //attributeOldValue: true,
+        //characterDataOldValue: true
     });
 
     //var frame = document.getElementById('groupchatIChat');
