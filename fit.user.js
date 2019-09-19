@@ -1,25 +1,37 @@
 // ==UserScript==
-// @name JWChat Fixes
+// @name JWChat Fixes - Testbed
 // @namespace https://github.com/Gettz/
-// @version 1.2
+// @version 1.4
 // @description JW fix iframe size
 // @author Tom L
 // @match https://tracker.telenetwork.com/tnichat/*
 // @grant window.focus
-// @updateURL https://raw.githubusercontent.com/Gettz/JWC-Fixes/master/fit.user.js
-// @downloadURL https://raw.githubusercontent.com/Gettz/JWC-Fixes/master/fit.user.js
+// @grant GM_addStyle
+// @require https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js
+// @require https://gist.github.com/raw/2625891/waitForKeyElements.js
 // ==/UserScript==
 
 (function() {
 'use strict';
     var observer = new MutationObserver(function(mutations, observer) {
     // fired when a mutation occurs
-    try {
-        var frame = document.getElementById('chat');
-        frame.style.height = '80%';
-    }
-    catch(err) {
-    }
+        try {
+            var frame = document.getElementById('chat');
+            frame.style.height = '80%';
+
+            waitForKeyElements(".chatbox", function(node) {
+                node.off();
+                setTimeout(function() {
+                    var iframe = document.getElementByClassName('groupchatRoster');
+                    console.log(iframe);
+                    $(iframe).append('<button id="myButton" type="button"> Scroll Fix </button>')
+            //document.getElementsByClassName('chatbox')[0].scrollTo(0,0);
+                    node.off();
+                }, 1000);
+            });
+        }
+        catch(err) {
+        }
     });
 
     // define what element should be observed by the observer
@@ -35,4 +47,16 @@
     }
     catch(err) {
     }
+
+    waitForKeyElements(".chatbox", function(node) {
+        function scroll() {
+            var chatframe = document.getElementsByClassName('chatbox')[0];
+            chatframe.scrollTo(0,chatframe.scrollHeight);
+        }
+        node.off();
+        setTimeout(function() {
+            setInterval(scroll, 5000);
+            node.off();
+        }, 1000);
+    });
 })();
