@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name JWChat Fixes
 // @namespace https://github.com/Gettz/
-// @version 1.1
+// @version 1.2
 // @description JW fix iframe size
 // @author Tom L
 // @match https://tracker.telenetwork.com/tnichat/*
@@ -27,14 +27,8 @@
     observer.observe(document, {
         subtree: true,
         attributes: true,
-        //childList: true,
-        //characterData: true,
-        //attributeOldValue: true,
-        //characterDataOldValue: true
     });
 
-    //var frame = document.getElementById('groupchatIChat');
-    //frame.style.height = '94%';
     try {
         var frame2 = document.getElementsByClassName('rosterInnerElement')[1];
         frame2.style.height = '75%'
