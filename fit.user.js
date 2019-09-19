@@ -43,7 +43,6 @@
             var smallchange = chatframe.scrollHeight - chatframe.scrollTop
             if (smallchange <= 300) {
                 chatframe.scrollTo(0,chatframe.scrollHeight);
-                console.log(smallchange);
             }
         }
         node.off();
