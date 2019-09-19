@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name JWChat Fixes
 // @namespace https://github.com/Gettz/
-// @version 1.4b
+// @version 1.5
 // @description JW fix iframe size
 // @author Tom L
 // @match https://tracker.telenetwork.com/tnichat/*
@@ -18,17 +18,6 @@
         try {
             var frame = document.getElementById('chat');
             frame.style.height = '80%';
-
-            waitForKeyElements(".chatbox", function(node) {
-                node.off();
-                setTimeout(function() {
-                    var iframe = document.getElementByClassName('groupchatRoster');
-                    console.log(iframe);
-                    $(iframe).append('<button id="myButton" type="button"> Scroll Fix </button>')
-            //document.getElementsByClassName('chatbox')[0].scrollTo(0,0);
-                    node.off();
-                }, 1000);
-            });
         }
         catch(err) {
         }
@@ -51,11 +40,15 @@
     waitForKeyElements(".chatbox", function(node) {
         function scroll() {
             var chatframe = document.getElementsByClassName('chatbox')[0];
-            chatframe.scrollTo(0,chatframe.scrollHeight);
+            var smallchange = chatframe.scrollHeight - chatframe.scrollTop
+            if (smallchange <= 300) {
+                chatframe.scrollTo(0,chatframe.scrollHeight);
+                console.log(smallchange);
+            }
         }
         node.off();
         setTimeout(function() {
-            setInterval(scroll, 5000);
+            setInterval(scroll, 1000);
             node.off();
         }, 1000);
     });
