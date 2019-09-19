@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name JWChat Fixes
 // @namespace https://github.com/Gettz/
-// @version 1.5
+// @version 1.6b
 // @description JW fix iframe size
 // @author Tom L
 // @match https://tracker.telenetwork.com/tnichat/*
@@ -40,14 +40,15 @@
     waitForKeyElements(".chatbox", function(node) {
         function scroll() {
             var chatframe = document.getElementsByClassName('chatbox')[0];
-            var smallchange = chatframe.scrollHeight - chatframe.scrollTop
-            if (smallchange <= 300) {
+            var scrollbottom = chatframe.scrollHeight - chatframe.scrollTop - chatframe.clientHeight;
+            //console.log(scrollbottom);
+            if (scrollbottom <= 80) {
                 chatframe.scrollTo(0,chatframe.scrollHeight);
             }
         }
         node.off();
         setTimeout(function() {
-            setInterval(scroll, 1000);
+            setInterval(scroll, 250);
             node.off();
         }, 1000);
     });
