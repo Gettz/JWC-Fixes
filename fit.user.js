@@ -1,13 +1,13 @@
 // ==UserScript==
-// @name JWChat Fixes
-// @namespace https://github.com/Gettz/
-// @version 1.7
+// @name        JWChat Fixes
+// @namespace   https://github.com/Gettz/
+// @version     1.7.1
 // @description JW fix iframe size
-// @author Tom L
-// @match https://tracker.telenetwork.com/tnichat/*
-// @grant window.focus
-// @require https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js
-// @require https://gist.github.com/raw/2625891/waitForKeyElements.js
+// @author      Tom L
+// @match       https://tracker.telenetwork.com/tnichat/*
+// @grant       window.focus
+// @require     https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js
+// @require     https://gist.github.com/raw/2625891/waitForKeyElements.js
 // ==/UserScript==
 
 (function() {
@@ -36,8 +36,10 @@
     catch(err) {
     }
 
+    // waits for groupchats to load before firing
     waitForKeyElements(".chatbox", function(node) {
         function scroll() {
+            // auto scrolls if within 40px of bottom of chat frame.
             var chatframe = document.getElementsByClassName('chatbox')[0];
             var scrollbottom = chatframe.scrollHeight - chatframe.scrollTop - chatframe.clientHeight;
             //console.log(scrollbottom);
@@ -47,6 +49,7 @@
         }
 
         function scrollfocus() {
+            // auto scrolls if chat frame is not current focus.
             var chatframe = document.getElementsByClassName('chatbox')[0];
             var isfocus = document.hasFocus();
             //console.log(isfocus);
@@ -54,9 +57,9 @@
                 chatframe.scrollTo(0,chatframe.scrollHeight);
             }
         }
-
         node.off();
         setTimeout(function() {
+            //controls timers for scroll functions
             setInterval(scroll, 250);
             setInterval(scrollfocus, 180000);
             node.off();
