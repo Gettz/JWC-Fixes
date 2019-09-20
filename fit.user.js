@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        JWChat Fixes
 // @namespace   https://github.com/Gettz/
-// @version     1.7.1
+// @version     1.7.2
 // @description JW fix iframe size
 // @author      Tom L
 // @match       https://tracker.telenetwork.com/tnichat/*
@@ -15,6 +15,7 @@
     var observer = new MutationObserver(function(mutations, observer) {
     // fired when a mutation occurs
         try {
+            // fixes DM chat box height
             var frame = document.getElementById('chat');
             frame.style.height = '80%';
         }
@@ -30,6 +31,7 @@
     });
 
     try {
+        // fixes main window height
         var frame2 = document.getElementsByClassName('rosterInnerElement')[1];
         frame2.style.height = '75%'
     }
