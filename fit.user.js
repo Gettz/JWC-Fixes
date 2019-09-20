@@ -1,12 +1,11 @@
 // ==UserScript==
 // @name JWChat Fixes
 // @namespace https://github.com/Gettz/
-// @version 1.6b
+// @version 1.7
 // @description JW fix iframe size
 // @author Tom L
 // @match https://tracker.telenetwork.com/tnichat/*
 // @grant window.focus
-// @grant GM_addStyle
 // @require https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js
 // @require https://gist.github.com/raw/2625891/waitForKeyElements.js
 // ==/UserScript==
@@ -42,13 +41,24 @@
             var chatframe = document.getElementsByClassName('chatbox')[0];
             var scrollbottom = chatframe.scrollHeight - chatframe.scrollTop - chatframe.clientHeight;
             //console.log(scrollbottom);
-            if (scrollbottom <= 80) {
+            if (scrollbottom <= 40) {
                 chatframe.scrollTo(0,chatframe.scrollHeight);
             }
         }
+
+        function scrollfocus() {
+            var chatframe = document.getElementsByClassName('chatbox')[0];
+            var isfocus = document.hasFocus();
+            //console.log(isfocus);
+            if (isfocus === false) {
+                chatframe.scrollTo(0,chatframe.scrollHeight);
+            }
+        }
+
         node.off();
         setTimeout(function() {
             setInterval(scroll, 250);
+            setInterval(scrollfocus, 180000);
             node.off();
         }, 1000);
     });
