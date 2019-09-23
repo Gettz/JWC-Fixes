@@ -62,7 +62,7 @@
         node.off();
         setTimeout(function() {
             //controls timers for scroll functions
-            setInterval(scroll, 250);
+            setInterval(scroll, 500);
             setInterval(scrollfocus, 180000);
             node.off();
         }, 1000);
